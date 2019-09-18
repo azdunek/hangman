@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class FromUser {
     private Scanner scanner = new Scanner(System.in);
 
-    public String getPassword(){
-       return scanner.nextLine();
+    public char[] getPassword(){
+       return scanner.nextLine().toCharArray();
     }
 
-    public String getLetter(){
-        return scanner.next();
+    public char getLetter(){
+        return scanner.next().charAt(0);
     }
 }
