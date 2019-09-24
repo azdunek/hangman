@@ -1,37 +1,19 @@
 package com.agnieszkazdunek;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Pictures {
-    static String [] szubienica= {"SZUBIENICA PUSTA",
-                           "SZUBIENICA1",
-                           "SZUBIENICA2",
-                           "SZUBIENICA3",
-                           "SZUBIENICA4"
+    static String [] szubienica= {"_ _ _ _ _\n|\n|\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|       |\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|     / |\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|     / |) \n|\n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|     / |) \n|     /    \n|\n|\n",
+                                  "_ _ _ _ _\n|       |\n|       O\n|     / |) \n|     / |    \n|\n|\n"
+
                             };
 
-    static void clearConsole(){
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-    }
+
+
 }

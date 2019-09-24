@@ -6,9 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         // !TODO: Dowiedz sie jak ignorowac wielkosc znakow dla char (ANSCII CODES)
-        // !TODO: Zrobic szubienice
-        // !TODO: Znajdz odpowiednie miejsce na clearConsole. Obrazki nie maja nic do czyszczenia konsoli
-        // !TODO: Ta sama litera kilka razy -> Komunikat: Litera juz uzyta! + wyświetl użyte litery
         // !TODO: Nie działają zdania, bo nie da się wpisać spacji!
 
         char playAgain ='Y';
@@ -18,7 +15,7 @@ public class Main {
         char letter;
         System.out.println("Podaj hasło:");
            Password password = new Password();
-           Pictures.clearConsole();
+           clearConsole();
         System.out.println(Pictures.szubienica[0]);
         password.displayEncryptedPassword();
         int mistake=0;
@@ -28,7 +25,11 @@ public class Main {
             FromUser fromUser = new FromUser();
 
             letter= fromUser.getLetter();
-            usedLetters.add(letter);
+            if(usedLetters.contains(letter)){
+                System.out.println("Użyłeś już tej litery! Podaj inną literę:");
+            } else{
+            usedLetters.add(letter);}
+
             if(password.contains(letter)){
                 password.revealLetter(letter);
                 password.displayEncryptedPassword();
@@ -41,7 +42,7 @@ public class Main {
                 System.out.println();
                 }
             }
-            if(mistake==Pictures.szubienica.length){
+            if(mistake==Pictures.szubienica.length-1){
                 System.out.println("You lost!");
             } else {
                 System.out.println("You won!");
@@ -51,7 +52,11 @@ public class Main {
              playAgain = answer.getLetter();
         }
     }
-
+public static void clearConsole(){
+        for(int i=0; i<=10; i++){
+            System.out.println();
+        }
+}
 
 
 
