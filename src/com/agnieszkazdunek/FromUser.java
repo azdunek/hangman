@@ -2,14 +2,14 @@ package com.agnieszkazdunek;
 
 import java.util.Scanner;
 
-public class FromUser {
+ class FromUser {
     private Scanner scanner = new Scanner(System.in);
 
-    public char[] getPassword(){
-       return scanner.nextLine().toCharArray();
+     char[] getPassword() {
+        return scanner.nextLine().toCharArray();
     }
 
-    public char getLetter(){
+     char getLetter() {
         return scanner.next().charAt(0);
     }
 }
