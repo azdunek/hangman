@@ -4,7 +4,7 @@ public class Password extends Object {
     private char[] value;
     private char[] encryptedValue;
 
-    Password(char[] value) {
+    public Password(char[] value) {
         this.value = value;
         encryptedValue = new char[value.length];
         encryptPassword();
@@ -19,7 +19,7 @@ public class Password extends Object {
         return false;
     }
 
-    void revealLetter(char letter) {
+    public void revealLetter(char letter) {
         for (int i = 0; i < this.value.length; i++) {
             if (this.value[i] == letter) {
                 this.encryptedValue[i] = this.value[i];
@@ -41,7 +41,7 @@ public class Password extends Object {
         System.out.println();
     }
 
-    boolean contains(char letter) {
+    public boolean contains(char letter) {
         for (char c : this.value) {
             if (c == letter) {
                 return true;
