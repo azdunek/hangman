@@ -1,6 +1,6 @@
 package com.agnieszkazdunek;
 
-public class Password extends Object {
+public class Password  {
     private char[] value;
     private char[] encryptedValue;
 
@@ -26,7 +26,6 @@ public class Password extends Object {
             }
         }
     }
-
 
     private void encryptPassword() {
         for (int i = 0; i < this.value.length; i++) {

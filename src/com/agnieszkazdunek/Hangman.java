@@ -2,70 +2,82 @@ package com.agnieszkazdunek;
 
 import java.util.ArrayList;
 
-public class Hangman {
-     int mistakeCounter;
+class Hangman {
+    private int mistakeCounter;
+    private FromUser fromUser = new FromUser();
+    private Password password;
+    private ArrayList<Character> usedLetters = new ArrayList<>();
+    private char letter;
 
-     void play() {
-            // przenies do pól z czego będzie korzystało więcej metod
-            ArrayList<Character> usedLetters = new ArrayList<>();
-            char letter;
-            System.out.println("Enter a word or phrase:");
-            FromUser dataProvider = new FromUser();
-            char[] passwordFromUser = dataProvider.getPassword();
-            // gdzie wpisujesz? tworzysz tylko obiekt
-            Password password = new Password(passwordFromUser);
-            clearConsole();
-            password.displayEncryptedPassword();
-            mistakeCounter = 0;
-            FromUser fromUser = new FromUser();
+    void play() {
+        getPasswordFromUser();
+        clearConsole();
+        password.displayEncryptedPassword();
+        mistakeCounter = 0;
 
-            while (password.notGuessed() && userDidNotReachedMistakesLimit()) {
-                System.out.println("Enter a letter:");
-                letter = fromUser.getLetter();
+        while (password.notGuessed() && userDidNotReachedMistakesLimit()) {
+            getLetterFromUser();
 
-                if (usedLetters.contains(letter)) {
-                    System.out.println("You have used that letter! Enter another letter:");
-                } else {
-                    usedLetters.add(letter);
-                }
-
-                if (password.contains(letter)) {
-                    password.revealLetter(letter);
-                    password.displayEncryptedPassword();
-                } else {
-                    printActualGallowsPicture();
-                    mistakeCounter++;
-
-                    System.out.println("Used letters:");
-                    //co tu sie dzieje? jakas petla? ale jaka ? stworz metode z odpowiednia nazwa
-                    for (Character usedLetter : usedLetters) {
-                        System.out.print(usedLetter + " ");
-                    }
-                    System.out.println();
-                }
+            if (usedLetters.contains(letter)) {
+                System.out.println("You have used that letter! Enter another letter:");
+            } else {
+                usedLetters.add(letter);
             }
 
-            // odpowiednio nazwij to porównanie i wyodrębnij do metody z samotłumaczącą się nazwą printGameResult ?
-            if (mistakeCounter == Pictures.gallows.length) {
-                System.out.println("You lost!");
+            if (password.contains(letter)) {
+                password.revealLetter(letter);
+                password.displayEncryptedPassword();
             } else {
-                System.out.println("You won!");
+                printActualGallowsPicture();
+                mistakeCounter++;
+
+                displayUsedLetters();
             }
         }
+        printGameResult();
+    }
 
+    private void getPasswordFromUser() {
+        System.out.println("Enter a word or phrase:");
+        char[] passwordFromUser = fromUser.getPassword();
+        password = new Password(passwordFromUser);
+    }
 
-    public void printActualGallowsPicture() {
+    private void getLetterFromUser() {
+        System.out.println("Enter a letter:");
+        letter = fromUser.getLetter();
+    }
+
+    private void displayUsedLetters() {
+        System.out.println("Used letters:");
+        for (Character usedLetter : usedLetters) {
+            System.out.print(usedLetter + " ");
+        }
+        System.out.println();
+    }
+
+    private void printGameResult() {
+        if (userDidNotReachedMistakesLimit()) {
+            System.out.println("You won!");
+        } else {
+            System.out.println("You lost!");
+        }
+    }
+
+    private void printActualGallowsPicture() {
         System.out.println(Pictures.gallows[mistakeCounter]);
     }
 
-    static void clearConsole() {
+    private static void clearConsole() {
         for (int i = 0; i <= 10; i++) {
             System.out.println();
         }
     }
 
-    boolean userDidNotReachedMistakesLimit (){
-         return mistakeCounter!=Pictures.gallows.length;
+    private boolean userDidNotReachedMistakesLimit() {
+        return mistakeCounter != Pictures.gallows.length;
     }
+
+
 }
 
